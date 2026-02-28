@@ -6,8 +6,11 @@ function updateIndicators() {
   if (activeImage != null) {
     activeImage.classList.remove("active");
   }
-
   popupIndicators[currentImgIndex].classList.add("active");
+}
+function updatePopupImg(img, index) {
+  popupImg.setAttribute("src", img);
+  currentImgIndex = index;
 }
 function nextImage() {
   currentImgIndex = ++currentImgIndex % imagesList.length;
@@ -18,8 +21,7 @@ function nextImage() {
   updateIndicators();
 }
 function prevImage() {
-  currentImgIndex =
-    --currentImgIndex < 0 ? imagesList.length - 1 : currentImgIndex;
+  currentImgIndex = --currentImgIndex < 0 ? imagesList.length - 1 : currentImgIndex;
   let prevImgIndex = currentImgIndex,
     prevImgEle = imagesList[prevImgIndex],
     prevImgSrc = prevImgEle.getAttribute("src");

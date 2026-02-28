@@ -27,9 +27,7 @@ popupKeys.forEach(function (popupKeys) {
     currentImgIndex = currentImg.dataset.index;
 
     updateIndicators();
-
-    popupImg.setAttribute("src", currentImgSrc);
-
+    updatePopupImg(currentImgSrc, currentImgIndex);
     togglePopup();
   });
 });
@@ -42,13 +40,19 @@ prev.addEventListener("click", prevImage);
 popupBox.addEventListener("click", (e) => {
   e.stopPropagation();
 });
+popupIndicators.forEach(function (item, index) {
+  item.addEventListener("click", function () {
+    let currentImgSrc = imagesList[index].getAttribute("src");
+    updatePopupImg(currentImgSrc, index);
+    updateIndicators();
+  });
+});
 // --------------------------------------Keyboard----------------------------------------
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     togglePopup();
   }
 });
-
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight") {
     nextImage();
